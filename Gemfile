@@ -12,6 +12,7 @@ gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'font-awesome-rails'
 
 gem 'stock_quote'
 

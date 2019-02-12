@@ -1,14 +1,15 @@
 class StocksController < ApplicationController
   
   def search
-    if params[:stock].blank?
+    if params[:search_param].blank?
       flash.now[:danger] = "You have entered an empty search string"
     else
-      @stock = Stock.new_from_lookup(params[:stock])
-      flash.now[:danger] = "You have entered an incorrect symbol" unless @stock
+      @users = User.search(params[:search_param])
+      @users = current_user.except_current_user(@users)
+      flash.now[:danger] = "No users match this search criteria" if @users.blank?
     end
     respond_to do |format|
-      format.js { render partial: 'users/result' }
+      format.js { render partial: 'friends/result' }
     end
   end
 
